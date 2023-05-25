@@ -3,8 +3,8 @@
 Uppdatera repository och sätt tidszon.
 
 ```bash
-timedatectl set-timezone Europe/Stockholm
-apt update && apt upgrade -y
+$ timedatectl set-timezone Europe/Stockholm
+$ apt update && apt upgrade -y
 ```
 
 Skaffa certifikat för wildcard-domän från Let's Encrypt.
@@ -41,7 +41,7 @@ oidc_idp CA  never updated
 CA pin       sha256:[CA pin]
 ```
 ```bash
-vim /etc/teleport.yaml
+$ vim /etc/teleport.yaml
 ```
 ```yml
 version: v3
@@ -107,24 +107,24 @@ Kopiera länken och klistra in det i en webbläsare skapa ett lösenord skanna Q
 Uppdatera repository och sätt tidszon.
 
 ```bash
-timedatectl set-timezone Europe/Stockholm
-apt update && apt upgrade -y
+$ timedatectl set-timezone Europe/Stockholm
+$ apt update && apt upgrade -y
 ```
 
 Installera Teleport.
 
 ```bash
-sudo curl https://apt.releases.teleport.dev/gpg \
+$ sudo curl https://apt.releases.teleport.dev/gpg \
 -o /usr/share/keyrings/teleport-archive-keyring.asc
 
-source /etc/os-release
+$ source /etc/os-release
 
-echo "deb [signed-by=/usr/share/keyrings/teleport-archive-keyring.asc] \
+$ echo "deb [signed-by=/usr/share/keyrings/teleport-archive-keyring.asc] \
 https://apt.releases.teleport.dev/${ID?} ${VERSION_CODENAME?} stable/v12" \
 | sudo tee /etc/apt/sources.list.d/teleport.list > /dev/null
 
-sudo apt-get update
-sudo apt-get install teleport
+$ sudo apt-get update
+$ sudo apt-get install teleport
 ```
 
 Sen för att få maskinen att gå med i klustret behövs CA pin och en token som finns i Teleport servern.
@@ -152,7 +152,7 @@ Please note:
 Gå tillbaka till din klient skapa teleport.yml i /etc skriv in nodename, token, proxy server och ca_pin.
 
 ```bash
-vim /etc/teleport.yaml
+$ vim /etc/teleport.yaml
 ```
 ```yml
 version: v3
@@ -186,8 +186,8 @@ proxy_service:
 ```
 
 ```bash
-systemctl enable teleport --now #Starta Teleport
-rm -rf /var/lib/teleport #Om man får felmeddelanden
+$ systemctl enable teleport --now #Starta Teleport
+$ rm -rf /var/lib/teleport #Om man får felmeddelanden
 ```
 
 ## Mediawiki klient
@@ -195,24 +195,24 @@ rm -rf /var/lib/teleport #Om man får felmeddelanden
 Uppdatera repository och sätt tidszon.
 
 ```bash
-timedatectl set-timezone Europe/Stockholm
-apt update && apt upgrade -y
+$ timedatectl set-timezone Europe/Stockholm
+$ apt update && apt upgrade -y
 ```
 
 Installera Teleport.
 
 ```bash
-sudo curl https://apt.releases.teleport.dev/gpg \
+$ sudo curl https://apt.releases.teleport.dev/gpg \
 -o /usr/share/keyrings/teleport-archive-keyring.asc
 
-source /etc/os-release
+$ source /etc/os-release
 
-echo "deb [signed-by=/usr/share/keyrings/teleport-archive-keyring.asc] \
+$ echo "deb [signed-by=/usr/share/keyrings/teleport-archive-keyring.asc] \
 https://apt.releases.teleport.dev/${ID?} ${VERSION_CODENAME?} stable/v12" \
 | sudo tee /etc/apt/sources.list.d/teleport.list > /dev/null
 
-sudo apt-get update
-sudo apt-get install teleport
+$ sudo apt-get update
+$ sudo apt-get install teleport
 ```
 
 Sen för att få maskinen att gå med i klustret behövs CA pin och en token som finns i Teleport servern.
@@ -245,7 +245,7 @@ Please note:
 Gå tillbaka till din klient skapa teleport.yml i /etc skriv in nodename, token, proxy server, ca_pin och app tjänsten.
 
 ```bash
-vim /etc/teleport.yaml
+$ vim /etc/teleport.yaml
 ```
 
 ```yml
@@ -286,8 +286,8 @@ app_service:
 ```
 
 ```bash
-systemctl enable teleport --now #Starta Teleport
-rm -rf /var/lib/teleport #Om man får felmeddelanden
+$ systemctl enable teleport --now #Starta Teleport
+$ rm -rf /var/lib/teleport #Om man får felmeddelanden
 ```
 
 ## Rollbaserad åtkomstkontroll
@@ -295,7 +295,7 @@ rm -rf /var/lib/teleport #Om man får felmeddelanden
 För att göra Rollbased åtkomst åt Frank användaren börja med att lägga till etiketten "environment: ubuntu" i SSH-tjänsten.
 
 ```bash
-vim /etc/teleport.yaml
+$ vim /etc/teleport.yaml
 ```
 ```yml
 version: v3
@@ -332,7 +332,7 @@ proxy_service:
 
 Starta om Teleport.
 ```bash
-systemctl restart teleport
+$ systemctl restart teleport
 ```
 
 Sen i webbgränssnittet gå till Management -> Roles -> CREATE NEW ROLE skriv in följande.
