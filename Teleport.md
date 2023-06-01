@@ -11,8 +11,27 @@ Skaffa certifikat för wildcard-domän från Let's Encrypt.
 
 ```bash
 $ apt-get install certbot -y
-$ certbot certonly --standalone -d *.test227.arxlight.com -n --agree-tos --email=exampel@email.com
+$ certbot certonly --manual \
+  --preferred-challenges=dns \
+  --email exampel@email.com \
+  --server https://acme-v02.api.letsencrypt.org/directory \
+  --agree-tos \
+  --manual-public-ip-logging-ok \
+  -d “*.test227.arxlight.com”
 ```
+
+När man kör det kommandot får man en output som är.
+```bash
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Please deploy a DNS TXT record under the name
+_acme-challenge.domain.com with the following value:
+SiPbTUGdqp37WnMNnG17N4qoZEVIiuO_MivrrhYmW-Y
+Before continuing, verify the record is deployed.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Press Enter to Continue
+```
+
+Då lägger man in texten som genererats i DNS servern som en TXT record med namnet _acme-challenge.test227.arxlight.com sedan trycker man enter.
 
 Ladda ner Teleport, konfigurera den med domännamnet, genrera konfigurationsfil och starta Teleport.
 
@@ -86,7 +105,7 @@ Nu kan man nå Teleport webbgränssnitt genom https://test227.arxlight.com och k
 Skapa användare genom Teleports admin verktyg "tctl".
 
 ```bash
-$ tctl users add [Usrname] --logins=root --roles=editor,auditor,access
+$ tctl users add Karl --logins=root --roles=editor,auditor,access
 ```
 
 * --logins - Maskininloggning, t. ex om jag har användare root kan jag logga in på en maskin genom SSH som root.
@@ -95,7 +114,7 @@ $ tctl users add [Usrname] --logins=root --roles=editor,auditor,access
 När man kör de kommandot kommer du se ut ungefär såhär:
 
 ```bash
-User "(Usr)" has been created but requires a password. Share this URL with the user to complete user setup, link is valid for 1h:
+User "Karl" has been created but requires a password. Share this URL with the user to complete user setup, link is valid for 1h:
 https://test227.arxlight.com:443/web/invite/f421d64a26c1e4d08f0387f9aa587b7a
 
 NOTE: Make sure test227.arxlight.com:443 points at a Teleport proxy which users can access.
@@ -303,7 +322,7 @@ teleport:
   nodename: ssh
   data_dir: /var/lib/teleport
   join_params:
-    token_name: 532ef5a7eb2ef8fa81e0384b6495ae57
+    token_name: [TOKEN]
     method: token
   proxy_server: test227.arxlight.com:443
   log:
@@ -311,7 +330,7 @@ teleport:
     severity: INFO
     format:
       output: text
-  ca_pin: "sha256:62031fc1225d344cbdc78243c7ea6880364bd2f471cc3a9791dd52df9e6a036b"
+  ca_pin: "sha256:[CA pin]"
   diag_addr: ""
 auth_service:
   enabled: "no"
