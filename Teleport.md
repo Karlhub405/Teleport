@@ -168,7 +168,7 @@ Please note:
   - 192.168.1.100:3025 must be reachable from the new node
 ```
 
-Gå tillbaka till din klient skapa teleport.yml i /etc skriv in nodename, token, proxy server och ca_pin.
+Gå tillbaka till din klient skapa teleport.yaml i /etc skriv in nodename, token, proxy server och ca_pin.
 
 ```bash
 $ vim /etc/teleport.yaml
@@ -261,7 +261,7 @@ Please note:
   - Add a TLS certificate for example-app.test227.arxlight.com:443 to the Teleport proxy under "https_keypairs".
 ```
 
-Gå tillbaka till din klient skapa teleport.yml i /etc skriv in nodename, token, proxy server, ca_pin och app tjänsten.
+Gå tillbaka till din klient skapa teleport.yaml i /etc skriv in nodename, token, proxy server, ca_pin och app tjänsten.
 
 ```bash
 $ vim /etc/teleport.yaml
