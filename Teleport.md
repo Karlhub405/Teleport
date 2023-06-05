@@ -24,7 +24,7 @@ När man kör det kommandot får man en output som är.
 ```bash
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Please deploy a DNS TXT record under the name
-_acme-challenge.domain.com with the following value:
+_acme-challenge.test227.arxlight.com.com with the following value:
 SiPbTUGdqp37WnMNnG17N4qoZEVIiuO_MivrrhYmW-Y
 Before continuing, verify the record is deployed.
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
